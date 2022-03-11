@@ -22,13 +22,13 @@ public class SearchTestsIgromania {
         open("https://www.igromania.ru/");
     }
 
-//    @AfterEach
-//    void closeWebBrowser() {
-//        closeWebBrowser();
-//    }
+    @AfterEach
+    void closeWebBrowser() {
+        closeWebDriver();
+    }
 
     @Test
-    @DisplayName("проверка Streets of Rage 4")
+    @DisplayName("Простой тест")
     void simpleSearchTest() {
 
         $(".search_box_link").click();
@@ -39,6 +39,7 @@ public class SearchTestsIgromania {
         $(".name-layers").shouldHave(text("Рецензии на DOOM (2016)"));
     }
 
+    @Disabled
     @ValueSource(strings = {"Streets of Rage 4", "DOOM (2016)"})
     @ParameterizedTest(name = "checking result on site igromania.ru \"{0}\"")
     void commonSearchTest(String testData) {
@@ -51,10 +52,9 @@ public class SearchTestsIgromania {
     @CsvSource(value = {
             "Streets of Rage 4| PC",
             "DOOM (2016)| PC"
-
     }, delimiter = '|')
     @ParameterizedTest(name = "проверка сайта игромания")
-    void complexSearchTest(String testData, String testData2){
+    void complexSearchTest(String testData, String testData2) {
         $(".search_box_link").click();
         $(".ssearch_inp").setValue(testData);
         $(withText(testData)).click();
@@ -62,12 +62,13 @@ public class SearchTestsIgromania {
         $(".game-tags").shouldHave(text(testData2));
     }
 
-static Stream<Arguments> mixedArgumentsTestDataProvider() {
-return Stream.of(
-        Arguments.of("Streets of Rage 4","PC","Рецензии ", "на "),
-        Arguments.of("DOOM (2016)","PC","Рецензии ", "на ")
-);
-}
+    static Stream<Arguments> mixedArgumentsTestDataProvider() {
+        return Stream.of(
+                Arguments.of("Streets of Rage 4", "PC", "Рецензии ", "на "),
+                Arguments.of("DOOM (2016)", "PC", "Рецензии ", "на "),
+                Arguments.of("Quake 4", "PC", "Рецензии ", "на ")
+        );
+    }
 
     @MethodSource(value = "mixedArgumentsTestDataProvider")
     @ParameterizedTest(name = "name{2}")
