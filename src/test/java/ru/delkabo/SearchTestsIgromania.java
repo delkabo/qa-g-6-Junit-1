@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class SearchTestsIgromania {
 
@@ -36,7 +35,7 @@ public class SearchTestsIgromania {
         $(withText("DOOM (2016)")).click();
         $(".name-layers").shouldHave(text("DOOM (2016)"));
         $(byText("Рецензии на DOOM (2016)")).click();
-        $(".name-layers").shouldHave(text("Рецензии на DOOM (2016)"));
+        $(".name-layers").shouldHave(text("Рецензии DOOM (2016)"));
     }
 
     @Disabled
