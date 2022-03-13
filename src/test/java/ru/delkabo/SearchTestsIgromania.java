@@ -87,4 +87,9 @@ public class SearchTestsIgromania {
         assertTrue(2 < 3);
     }
 
+    @Test
+    void testBranch2() {
+        assertTrue(2 < 3);
+    }
+
 }
