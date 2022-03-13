@@ -92,4 +92,9 @@ public class SearchTestsIgromania {
         assertTrue(2 < 3);
     }
 
+    @Test
+    void testBranch3() {
+        assertTrue(2 < 3);
+    }
+
 }
